@@ -19,6 +19,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+// Nisharga Kabir
 app.post("/chat", (req, res) => {
   const question = req.body.question;
   openai
@@ -42,7 +43,7 @@ app.post("/chat", (req, res) => {
       res.json({ answer, question });
     });
 });
- 
+
 app.listen(port, () => {
   console.log("port listen:", port);
 });
