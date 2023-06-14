@@ -19,7 +19,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// Nisharga Kabir
+// Nisharga Kabir in envy
 app.post("/chat", (req, res) => {
   const question = req.body.question;
   openai
