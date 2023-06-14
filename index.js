@@ -19,7 +19,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// Nisharga Kabir in envy
+// result
 app.post("/result", (req, res) => {
   const wants_buy = req.body.wants_buy;
   const money_need = req.body.money_need;
