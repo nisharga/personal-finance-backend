@@ -25,13 +25,13 @@ app.post("/result", (req, res) => {
   const money_need = req.body.money_need;
   const wait_years = req.body.wait_years;
   const salary_month = req.body.salary_month;
-  const expenses = [...req.body.expenses];
+  const expenses = req.body.expenses;
   const expenses_amount_month = req.body.expenses_amount_month;
   const give_hours_for_dream = req.body.give_hours_for_dream;
   const can_do_it_from = req.body.can_do_it_from;
-  const interested_in = [...req.body.interested_in];
+  const interested_in = req.body.interested_in;
 
-  const result = `I wants to buy a ${wants_buy}, my salary is ${salary_month}/month. but i spend ${expenses_amount_month}/month I need ${money_need} in ${wait_years} years. Most expenses for me in ${expenses}. give me some ideas`; 
+  const result = `I wants to buy a ${wants_buy}, my salary is ${salary_month}/month. but i spend ${expenses_amount_month}/month I need ${money_need} in ${wait_years} years. Most expenses for me in ${expenses}. give me some ideas`;
 
   openai
     .createCompletion({
@@ -61,36 +61,34 @@ app.post("/sitelooks", (req, res) => {
   const money_need = req.body.money_need;
   const wait_years = req.body.wait_years;
   const salary_month = req.body.salary_month;
-  const expenses = [...req.body.expenses];
+  const expenses = req.body.expenses;
   const expenses_amount_month = req.body.expenses_amount_month;
   const give_hours_for_dream = req.body.give_hours_for_dream;
   const can_do_it_from = req.body.can_do_it_from;
-  const interested_in = [...req.body.interested_in];
- 
-  const sites_to_looks_at = `i can give ${give_hours_for_dream} everyday from ${can_do_it_from}. i am interested in ${interested_in}. give me some idea how i earn money in 1 years, which type of skills i need to expert on that field. Suggest me some website also including youtube, discord`; 
+  const interested_in = req.body.interested_in;
+
+  const sites_to_looks_at = `i can give ${give_hours_for_dream} everyday from ${can_do_it_from}. i am interested in ${interested_in}. give me some idea how i earn money in 1 years, which type of skills i need to expert on that field. Suggest me some website also including youtube, discord`;
 
   openai
-  .createCompletion({
-    model: "text-davinci-003",
-    prompt: sites_to_looks_at,
-    max_tokens: 1500,
-    temperature: 1,
-  })
-  .then((response) => {
-    return response?.data.choices?.[0]?.text;
-  })
-  .then((answer) => {
-    const array = answer
-      ?.split("\n")
-      .filter((value) => value)
-      .map((value) => value.trim());
-    return array;
-  })
-  .then((answer) => {
-    res.json({ answer });
-  });
-
-
+    .createCompletion({
+      model: "text-davinci-003",
+      prompt: sites_to_looks_at,
+      max_tokens: 1500,
+      temperature: 1,
+    })
+    .then((response) => {
+      return response?.data.choices?.[0]?.text;
+    })
+    .then((answer) => {
+      const array = answer
+        ?.split("\n")
+        .filter((value) => value)
+        .map((value) => value.trim());
+      return array;
+    })
+    .then((answer) => {
+      res.json({ answer });
+    });
 });
 
 //
@@ -99,40 +97,38 @@ app.post("/tips", (req, res) => {
   const money_need = req.body.money_need;
   const wait_years = req.body.wait_years;
   const salary_month = req.body.salary_month;
-  const expenses = [...req.body.expenses];
+  const expenses = req.body.expenses;
   const expenses_amount_month = req.body.expenses_amount_month;
   const give_hours_for_dream = req.body.give_hours_for_dream;
   const can_do_it_from = req.body.can_do_it_from;
-  const interested_in = [...req.body.interested_in];
- 
-  const tips = `I expenses all money every month. i spend most of my money in ${expenses} . Provide me some tips about assets and liabilities. how i will savings my moeny`
+  const interested_in = req.body.interested_in;
+
+  const tips = `I expenses all money every month. i spend most of my money in ${expenses} . Provide me some tips about assets and liabilities. how i will savings my moeny`;
 
   openai
-  .createCompletion({
-    model: "text-davinci-003",
-    prompt: tips,
-    max_tokens: 1500,
-    temperature: 1,
-  })
-  .then((response) => {
-    return response?.data.choices?.[0]?.text;
-  })
-  .then((answer) => {
-    const array = answer
-      ?.split("\n")
-      .filter((value) => value)
-      .map((value) => value.trim());
-    return array;
-  })
-  .then((answer) => {
-    res.json({ answer });
-  });
-
-
+    .createCompletion({
+      model: "text-davinci-003",
+      prompt: tips,
+      max_tokens: 1500,
+      temperature: 1,
+    })
+    .then((response) => {
+      return response?.data.choices?.[0]?.text;
+    })
+    .then((answer) => {
+      const array = answer
+        ?.split("\n")
+        .filter((value) => value)
+        .map((value) => value.trim());
+      return array;
+    })
+    .then((answer) => {
+      res.json({ answer });
+    });
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello, Express!');
+app.get("/", (req, res) => {
+  res.send("Hello, Express!");
 });
 
 app.listen(port, () => {
